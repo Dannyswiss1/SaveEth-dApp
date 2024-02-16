@@ -38,7 +38,11 @@ describe("SaveEth", function () {
     const amount = 10
     await myToken.approve(saveEth.target, amount);
     await saveEth.deposit(amount);
-    expect
+    await expect (saveEth.deposit(amount))
+    .to.emit(saveEth, 'SavingSuccessful')
+     .withArgs(
+       owner.address,
+       amount);
   })
  })
 });
